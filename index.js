@@ -1,11 +1,17 @@
 import express from "express"
 import morgan from "morgan"
+import {createWriteStream} from "fs"
 
 import {router as taskManagerRouter} from "./taskManager/index.js"
 
-app.use(morgan("common", {immediate: true}))
 
 const app = express()
+
+const accessLogStream = createWriteStream("access.log", {flags: "a"})
+app.use(morgan("common", {
+    immediate: true,
+    stream: accessLogStream
+}))
 
 app.use("/taskManager", taskManagerRouter)
 
