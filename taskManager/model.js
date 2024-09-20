@@ -7,3 +7,8 @@ const data = [
 export function getAll() {
     return Promise.resolve(data)
 }
+
+export function removeId(id) {
+    data = data.filter(task => task.id !== id)
+    return Promise.resolve()
+}

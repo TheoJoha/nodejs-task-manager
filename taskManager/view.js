@@ -8,10 +8,16 @@ export function render(tasks) {
     </head>
     <body>
         <table>
-            <thead><tr><th>Id</th><th>Title</th></tr></thead>
+            <thead><tr><th>Id</th><th>Title</th><th></th></tr></thead>
             <tbody>
                 ${tasks
-                    .map(task => `<tr><td>${task.id}</td><td>${task.title}</td></tr>`)
+                    .map(task => `
+                        <tr>
+                            <td>${task.id}</td>
+                            <td>${task.title}</td>
+                            <td><a href="/movie/delete/${task.id}">delete</a></td>
+                        </tr>`
+                    )
                     .join("")
                 }
             </tbody>
