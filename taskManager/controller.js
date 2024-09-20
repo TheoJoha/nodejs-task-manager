@@ -8,7 +8,7 @@ export async function listAction(req, res) {
 }
 
 export async function removeAction(req, res) {
-    const id = parseInt(request.params.id, 10)
+    const id = parseInt(req.params.id, 10)
     await remove(id)
     res.redirect(req.baseUrl)
 }

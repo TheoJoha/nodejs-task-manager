@@ -15,7 +15,7 @@ export function render(tasks) {
                         <tr>
                             <td>${task.id}</td>
                             <td>${task.title}</td>
-                            <td><a href="/movie/delete/${task.id}">delete</a></td>
+                            <td><a href="/task/delete/${task.id}">delete</a></td>
                         </tr>`
                     )
                     .join("")
