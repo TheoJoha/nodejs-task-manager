@@ -1,5 +1,9 @@
 import express from "express"
+import morgan from "morgan"
+
 import {router as taskManagerRouter} from "./taskManager/index.js"
+
+app.use(morgan("common", {immediate: true}))
 
 const app = express()
 
