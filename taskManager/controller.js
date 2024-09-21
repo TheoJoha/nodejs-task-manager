@@ -13,3 +13,13 @@ export async function removeAction(req, res) {
     res.redirect(req.baseUrl)
 }
 
+export async function formAction(req, res) {
+    let task = {id: "", name: "", time: ""}
+
+    if (req.params.id) {
+        task = await getAll(parseInt(req.params.id, 10))
+    }
+
+    const body = form(task)
+    res.send(body)
+}
