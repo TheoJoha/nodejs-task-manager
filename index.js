@@ -13,9 +13,11 @@ app.use(morgan("common", {
     stream: accessLogStream
 }))
 
-app.use("/taskManager", taskManagerRouter)
+app.use(express.urlencoded({extended: false}))
 
-app.get("/", (req, res) => res.redirect("/taskManager"))
+app.use("/task", taskManagerRouter)
+
+app.get("/", (req, res) => res.redirect("/task"))
 
 app.listen(3003, () => {
     console.log("App is accessible at PORT 3003")
