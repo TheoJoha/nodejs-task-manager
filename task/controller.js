@@ -1,4 +1,4 @@
-import {getAll, remove} from "./model.js"
+import {getAll, remove, getId, save} from "./model.js"
 import {render} from "./view.js"
 
 export async function listAction(req, res) {
@@ -22,4 +22,14 @@ export async function formAction(req, res) {
 
     const body = form(task)
     res.send(body)
+}
+
+export async function saveAction(req, res) {
+    const task = {
+        id: req.body.id,
+        name: req.body.name,
+        time: req.body.time,
+    }
+    await save(task)
+    res.redirect(req.baseUrl)
 }

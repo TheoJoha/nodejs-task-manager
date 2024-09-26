@@ -2,7 +2,7 @@ import express from "express"
 import morgan from "morgan"
 import {createWriteStream} from "fs"
 
-import {router as taskManagerRouter} from "./taskManager/index.js"
+import {router as task} from "./task/index.js"
 
 
 const app = express()
@@ -15,7 +15,7 @@ app.use(morgan("common", {
 
 app.use(express.urlencoded({extended: false}))
 
-app.use("/task", taskManagerRouter)
+app.use("/task", task)
 
 app.get("/", (req, res) => res.redirect("/task"))
 
