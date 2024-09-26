@@ -5,7 +5,7 @@ table {
 th {
     background-color: black;
     font-weight: bold;
-    color: light-grey;
+    color: lightgrey;
     text-align: left;
     padding: 5px;
 }
@@ -16,6 +16,6 @@ td {
 }
 
 tbody tr:hover {
-    background-color: light-grey;
+    background-color: lightgrey;
 }
 
