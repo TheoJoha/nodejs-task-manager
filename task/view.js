@@ -4,7 +4,8 @@ export function render(tasks) {
     <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Tasks list </title>
+        <title>Tasks list</title>
+        <link rel="stylesheet" href="style.css" />
     </head>
     <body>
         <table>

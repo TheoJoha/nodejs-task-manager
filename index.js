@@ -1,11 +1,15 @@
 import express from "express"
 import morgan from "morgan"
+import {dirname} from "path"
+import {fileURLToPath} from "url"
 import {createWriteStream} from "fs"
 
 import {router as task} from "./task/index.js"
 
 
 const app = express()
+
+app.use(express.static(`${dirname(fileURLToPath(import.meta.url))}/public`))
 
 const accessLogStream = createWriteStream("access.log", {flags: "a"})
 app.use(morgan("common", {

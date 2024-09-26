@@ -1,5 +1,6 @@
 import {getAll, remove, getId, save} from "./model.js"
 import {render} from "./view.js"
+import {render as form} from "./form.js"
 
 export async function listAction(req, res) {
     const data = await getAll()
