@@ -1,4 +1,4 @@
-import {getAll, remove, getId, save} from "./model.js"
+import {getAll, remove, get, save} from "./model.js"
 import {render} from "./view.js"
 import {render as form} from "./form.js"
 
@@ -18,7 +18,7 @@ export async function formAction(req, res) {
     let task = {id: "", name: "", time: ""}
 
     if (req.params.id) {
-        task = await getAll(parseInt(req.params.id, 10))
+        task = await get(parseInt(req.params.id, 10))
     }
 
     const body = form(task)

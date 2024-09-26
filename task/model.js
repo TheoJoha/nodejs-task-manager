@@ -23,8 +23,8 @@ export function getAll() {
     return Promise.resolve(data)
 }
 
-export function getId(id) {
-    return Promise.resolve(data.find((task) => task.id !== id))
+export function get(id) {
+    return Promise.resolve(data.find((task) => task.id === id))
 }
 
 export function remove(id) {

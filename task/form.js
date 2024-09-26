@@ -5,7 +5,7 @@ export function render(task) {
     <head>
         <meta charset="UTF-8">
         <title>Task list</title>
-        <link rel="stylesheet" href="/style.css" />
+        <link rel="stylesheet" href=" /style.css" />
     </head>
     <body>
         <form action="/task/save" method="post">

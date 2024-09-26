@@ -10,6 +10,6 @@ const router = Router()
 router.get("/", listAction)
 router.get("/delete/:id", removeAction)
 router.get("/form/:id?", formAction)
-router.get("/save", saveAction)
+router.post("/save", saveAction)
 
 export {router}

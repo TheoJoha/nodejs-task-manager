@@ -4,7 +4,7 @@ import {dirname} from "path"
 import {fileURLToPath} from "url"
 import {createWriteStream} from "fs"
 
-import {router as task} from "./task/index.js"
+import {router as taskRouter} from "./task/index.js"
 
 
 const app = express()
@@ -19,7 +19,7 @@ app.use(morgan("common", {
 
 app.use(express.urlencoded({extended: false}))
 
-app.use("/task", task)
+app.use("/task", taskRouter)
 
 app.get("/", (req, res) => res.redirect("/task"))
 
