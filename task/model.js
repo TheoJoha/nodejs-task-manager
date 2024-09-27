@@ -1,42 +1,76 @@
-let data = [
-    {id: 1, name: "Task 1", time: 1},
-    {id: 2, name: "Task 2", time: 2},
-    {id: 3, name: "Task 3", time: 3}
-]
+import sqlite from "sqlite3"
 
-function getNextId() {
-    return Math.max(...data.map((task) => task.id)) + 1
+const db = new sqlite.Database("./task.db")
+
+
+export async function getAll() {
+    return new Promise((resolve, reject) => {
+        const query = 'SELECT * FROM tasks';
+        db.all(query, (error, results) => {
+            if (error) {
+                reject(error)
+            } else {
+                resolve(results)
+            }
+        })
+    })
 }
 
 function insert(task) {
-    task.id = getNextId()
-    data.push(task)
+    return new Promise((resolve, reject) => {
+        const query = 'INSERT INTO Tasks (name, time) VALUES (?, ?)'
+        db.run(query, [task.name, task.time], (error, results) => {
+            if (error) {
+                reject(error)
+            } else {
+                resolve(results)
+            }
+        })
+    })
 }
 
 function update(task) {
-    task.id = parseInt(task.id, 10)
-    const index = data.findIndex((item) => item.id === task.id)
-    data[index] = task
+    return new Promise((resolve, reject) => {
+        const query = 'UPDATE Tasks SET name = ?, time = ? WHERE id = ?'
+        db.run(query, [task.name, task.time, task.id], (error, results) => {
+            if (error) {
+                reject(error)
+            } else {
+                resolve(results)
+            }
+        })
+    })
 }
 
-export function getAll() {
-    return Promise.resolve(data)
+export async function get(id) {
+    return new Promise((resolve, reject) => {
+        const query = 'SELECT * FROM Tasks WHERE id = ?'
+        db.get(query, [id], (error, results) => {
+            if (error) {
+                reject(error)
+            } else {
+                resolve(results)
+            }
+        })
+    })
 }
 
-export function get(id) {
-    return Promise.resolve(data.find((task) => task.id === id))
-}
-
-export function remove(id) {
-    data = data.filter(task => task.id !== id)
-    return Promise.resolve()
-}
-
-export function save(task) {
-    if (task.id === "") {
-        insert(task)
+export async function save(task) {
+    if (!task.id) {
+        return insert(task)
     } else {
-        update(task)
+        return update(task)
     }
-    return Promise.resolve()
+}
+export async function remove(id) {
+    return new Promise((resolve, reject) => {
+        const query = 'DELETE FROM Tasks WHERE id = ?'
+        db.run(query, [id], (error, results) => {
+            if (error) {
+                reject(error)
+            } else {
+                resolve(results)
+            }
+        })
+    })
 }
